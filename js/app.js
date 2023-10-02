@@ -100,7 +100,19 @@ topMenuEl.addEventListener('click', function(event){
     //5.5
     point.classList.add('active');
     //5.6
-    
+    const dataLink = menuLinks.find(function(linkToObj){
+      return linkToObj.text === point.textContent;
+    })
+    showingSubMenu = 'subLinks' in dataLink;
+    //5.7
+
+  if (showingSubMenu){
+    buildSubMenu (dataLink.subLinks);
+    subMenuEl.style.top = '100%';
+  } else {
+    subMenuEl.style.top = '0%';
+    mainEl.innerHTML = '<h1>about</h1>';
+  }
 })
 //task 5.3
 //this can be seen in the function for 5.2
@@ -112,24 +124,47 @@ topMenuEl.addEventListener('click', function(event){
 //this can be seen in the function for 5.2
 
 //task 5.6
-
+//this can be seen in the function for 5.2
 
 //task 5.7
-
+//this can be seen in the function for 5.2
 
 //task 5.8
-
+function buildSubMenu(subLinks){
+  subMenuEl.innerHTML = "";
+  subLinks.forEach(function(link){
+    const elLink = document.createElement('a');
+    elLink.setAttribute('href', link.href);
+    elLink.textContent = link.text;
+    subMenuEl.appendChild(elLink);
+  })
+}
 
 //task 6
+subMenuEl.addEventListener('click', function(event){
+  event.preventDefault();
+  const link = event.target;
+  if(link.tagName !== 'A') return;
+  console.log(link.textContent);
 
+  showingSubMenu = false;
+  subMenuEl.style.top = '0';
+
+  topMenuLinks.forEach(function(link){
+    link.classList.remove('active');
+
+  });
+
+  mainEl.innerHTML = `<h1>${link.textContent}</h1>`
+})
 
 //task 6.1
-
+//this task can be seen in task 6
 
 //task 6.2
-
+//this task can be seen in task 6
 
 //task 6.3
-
+//this task can be seen in task 6
 //testing
 //console.log("ALL BELOW HERE IS TESTING =======================================")
