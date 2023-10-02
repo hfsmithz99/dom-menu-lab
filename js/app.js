@@ -100,6 +100,7 @@ topMenuEl.addEventListener('click', function(event){
     //5.5
     point.classList.add('active');
     //5.6
+    //I was unable to understand or complete this one so I had to look at the solution,  I think I understand how this one works but I am not sure I could implement it without reference
     const dataLink = menuLinks.find(function(linkToObj){
       return linkToObj.text === point.textContent;
     })
